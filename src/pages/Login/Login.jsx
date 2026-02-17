@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./Login.module.css";
 import logo from "../../assets/straton-logo.png";
+import { supabase } from "../../lib/supabaseClient";
+
 
 
 // Importpfad ggf. an dein Projekt anpassen:
@@ -13,6 +15,9 @@ import { Input, Button } from "../../components/ui";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [formError, setFormError] = useState("");
+
 
   // Optional simple Frontend-Validierung (ohne "Login-Logik")
   const [touched, setTouched] = useState({ email: false, password: false });
@@ -23,14 +28,37 @@ export default function Login() {
   const passwordError =
     touched.password && !password.trim() ? "Bitte gib dein Passwort ein." : "";
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setTouched({ email: true, password: true });
+const onSubmit = async (e) => {
+  e.preventDefault();
+  setTouched({ email: true, password: true });
+  setFormError("");
 
-    // Keine Login-Logik gewünscht -> wir stoppen hier.
-    // Später kannst du hier deinen Auth-Call einbauen.
-    if (!email.trim() || !password.trim()) return;
-  };
+  if (!email.trim() || !password.trim()) return;
+
+  setLoading(true);
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email.trim(),
+    password: password.trim(),
+  });
+  setLoading(false);
+
+  if (error) {
+    setFormError(error.message || "Login fehlgeschlagen.");
+    return;
+  }
+
+  // ✅ Redirect nach Login:
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next");
+
+  // Vanilla Default (wenn kein next)
+  const fallback = "https://dreipac.github.io/Bucket-Prod/";
+
+  // next kommt z.B. als "/Bucket-Prod/index.html"
+  const target = next ? new URL(next, window.location.origin).toString() : fallback;
+  window.location.href = target;
+};
+
 
   return (
     <div className={styles.page}>
@@ -72,9 +100,11 @@ export default function Login() {
                 onBlur={() => setTouched((t) => ({ ...t, password: true }))}
               />
 
-              <Button type="submit" fullWidth>
-                Login
-              </Button>
+              {formError && <div style={{ color: "#ef4444", fontSize: "0.9rem" }}>{formError}</div>}
+             <Button type="submit" fullWidth loading={loading} disabled={loading}>
+              Login
+            </Button>
+
 
               <div className={styles.meta}>
                 <a className={styles.link} href="#">
