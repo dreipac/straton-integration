@@ -116,6 +116,10 @@ const onSubmit = async (e) => {
                 </a>
               </div>
             </form>
+            <p className={styles.testNotice}>
+              Private Testversion, nur freigegebene Personen haben Zugriff
+            </p>
+
           </div>
         </div>
         <div className={styles.left} aria-hidden="true" />

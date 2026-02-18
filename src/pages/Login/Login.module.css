@@ -216,3 +216,11 @@
   }
 }
 
+.testNotice {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #d32f2f;
+  text-align: center;
+  font-weight: 500;
+}
+
