@@ -67,9 +67,6 @@ const onSubmit = async (e) => {
 
         <div className={styles.right}>
           <img src={logo} alt="Straton Logo" className={styles.logo} />
-            <p className={styles.testNotice}>
-              INTEGRATION 
-            </p>
           <div className={styles.content}>
             <header className={styles.header}>
               <h1 className={styles.title}>Hallo, Willkommen</h1>
@@ -120,7 +117,8 @@ const onSubmit = async (e) => {
               </div>
             </form>
             <p className={styles.testNotice}>
-              Private Testversion, nur freigegebene Personen haben Zugriff
+              Private Testversion, nur freigegebene Personen haben Zugriff <br />
+              INTEGRATION
             </p>
 
           </div>
