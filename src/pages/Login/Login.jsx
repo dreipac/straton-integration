@@ -67,6 +67,9 @@ const onSubmit = async (e) => {
 
         <div className={styles.right}>
           <img src={logo} alt="Straton Logo" className={styles.logo} />
+            <p className={styles.testNotice}>
+              INTEGRATION 
+            </p>
           <div className={styles.content}>
             <header className={styles.header}>
               <h1 className={styles.title}>Hallo, Willkommen</h1>
