@@ -38,6 +38,23 @@ jobs:
           rm -rf dist
           mkdir -p dist/login
           cp -R apps/login/dist/. dist/login/
+        
+      - name: Create root index.html redirect
+        run: |
+          cat > dist/index.html <<'EOF'
+          <!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8" />
+              <meta http-equiv="refresh" content="0; url=./login/" />
+              <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <title>Straton Integration</title>
+            </head>
+            <body>
+              <p>Redirecting to <a href="./login/">login</a>…</p>
+            </body>
+          </html>
+          EOF
 
       - uses: actions/upload-pages-artifact@v3
         with:
