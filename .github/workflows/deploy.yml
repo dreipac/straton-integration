@@ -1,4 +1,4 @@
-name: Deploy Vite to GitHub Pages
+name: Deploy Straton to GitHub Pages
 
 on:
   push:
@@ -24,13 +24,20 @@ jobs:
           node-version: 20
           cache: npm
 
-      - run: npm ci
+      - name: Install
+        run: npm ci
 
-      - run: npm run build
+      - name: Build login app
+        run: npm run build -w apps/login
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
+      - name: Assemble Pages dist
+        run: |
+          rm -rf dist
+          mkdir -p dist/login
+          cp -R apps/login/dist/. dist/login/
 
       - uses: actions/upload-pages-artifact@v3
         with:
