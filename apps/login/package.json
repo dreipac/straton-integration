@@ -13,7 +13,8 @@
     "@supabase/supabase-js": "^2.96.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "scheduler": "^0.27.0"
+    "scheduler": "^0.27.0",
+    "@straton/ui": "file:../../packages/ui"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

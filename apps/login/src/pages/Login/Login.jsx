@@ -7,7 +7,7 @@ import { supabase } from "../../lib/supabaseClient";
 
 // Importpfad ggf. an dein Projekt anpassen:
 // Wenn du `src/components/ui/index.js` hast:
-import { Input, Button } from "../../components/ui";
+import { Button, Input } from "@straton/ui";
 
 // Falls du KEIN ui/index.js hast, nimm stattdessen:
 // import Input from "../../components/ui/Input/Input.jsx";
