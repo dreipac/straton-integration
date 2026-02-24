@@ -32,12 +32,24 @@ jobs:
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_REPO_BASE: "/${{ github.event.repository.name }}"
+          VITE_APP_BASE: "/login/"
+
+
+      - name: Build overview app
+        run: npm run build -w apps/overview
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_REPO_BASE: "/${{ github.event.repository.name }}"
+          VITE_APP_BASE: "/overview/"
 
       - name: Assemble Pages dist
         run: |
           rm -rf dist
-          mkdir -p dist/login
+          mkdir -p dist/login dist/overview
           cp -R apps/login/dist/. dist/login/
+          cp -R apps/overview/dist/. dist/overview/
         
       - name: Create root index.html redirect
         run: |

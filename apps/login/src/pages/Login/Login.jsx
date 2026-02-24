@@ -51,12 +51,17 @@ const onSubmit = async (e) => {
   const params = new URLSearchParams(window.location.search);
   const next = params.get("next");
 
-  // Vanilla Default (wenn kein next)
-  const fallback = "https://dreipac.github.io/Bucket-Prod/";
+  // Repo-Base für GitHub Pages (z.B. "/straton-integration")
+  const repoBase = import.meta.env.VITE_REPO_BASE || "";
 
-  // next kommt z.B. als "/Bucket-Prod/index.html"
-  const target = next ? new URL(next, window.location.origin).toString() : fallback;
-  window.location.href = target;
+  // Default-Ziel: Overview
+  const fallback = `${repoBase}/overview/`;
+
+  // next kann z.B. "/overview/" sein (empfohlen)
+  const target = next ? `${repoBase}${next}` : fallback;
+
+  // replace: verhindert "Zurück" zur Login-Seite nach erfolgreichem Login
+  window.location.replace(target);
 };
 
 
