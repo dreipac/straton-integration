@@ -11,5 +11,13 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     base,
+
+    resolve: {
+      dedupe: ["react", "react-dom"],
+    },
+
+    optimizeDeps: {
+      include: ["react", "react-dom"],
+    },
   };
 });
