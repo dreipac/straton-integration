@@ -46,18 +46,18 @@
 }
 
 .closeBtn {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.85);
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
 
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+  transition: background 120ms ease, color 120ms ease;
 }
 
 .closeIcon {
@@ -67,12 +67,9 @@
 }
 
 .closeBtn:hover {
-  /* Rot beim Hover wie Screenshot */
   background: rgba(220, 38, 38, 0.18);
-  border-color: rgba(220, 38, 38, 0.35);
-  transform: translateY(-1px);
+  color: #ff4d4f;
 }
-
 .closeBtn:active {
   transform: translateY(0px);
 }
