@@ -1,0 +1,97 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  /* dunkler Blur wie Screenshot */
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.modal {
+  width: min(1120px, 100%);
+  height: min(640px, 100%);
+  border-radius: 22px;
+
+  background: linear-gradient(180deg, rgba(20, 26, 38, 0.92), rgba(12, 16, 26, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.65);
+
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  height: 64px;
+  padding: 0 18px 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* leichte Trennlinie wie Screenshot */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.2px;
+}
+
+.closeBtn {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.closeIcon {
+  font-size: 22px;
+  line-height: 1;
+  transform: translateY(-1px);
+}
+
+.closeBtn:hover {
+  /* Rot beim Hover wie Screenshot */
+  background: rgba(220, 38, 38, 0.18);
+  border-color: rgba(220, 38, 38, 0.35);
+  transform: translateY(-1px);
+}
+
+.closeBtn:active {
+  transform: translateY(0px);
+}
+
+.body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 0; /* wichtig für overflow */
+}
+
+.left {
+  padding: 16px;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.015);
+  overflow: auto;
+}
+
+.right {
+  padding: 18px;
+  overflow: auto;
+}
